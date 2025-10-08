@@ -14,7 +14,8 @@ export default function Navbar() {
       const token = localStorage.getItem('token');
       if (!token) return setUser(null);
       try {
-        const res = await fetch('http://localhost:5000/api/auth/me', {
+        const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const res = await fetch(`${API_BASE}/api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) {
